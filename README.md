@@ -25,21 +25,23 @@ Projekt öffnen unter: [http://localhost:3000](http://localhost:3000)
 - **Übersicht aller Vorlesungen** (`/`)
 - **Detailseite einer Vorlesung** (`/vorlesungen/:id`)
   - Mit Titel, Beschreibung, Dozent, ECTS
-  - „Merken“-Button (Speichern im Browser)
+  - „Merken“-Button (Speichern im Client)
 - **Merkliste** (`/merkliste`)
-  - Anzeige aller gemerkten Vorlesungen (localStorage-basiert)
+  - Anzeige aller gemerkten Vorlesungen
 - **FAQ-Seite** (`/faq`)
   - Statische Liste von Fragen und Antworten
 
-## Struktur
+## Projektstruktur
 
+```bash
 app/
-├─ layout.js # Globales Layout (Header/Footer)
-├─ page.js # Startseite – Übersicht aller Vorlesungen
+├─ layout.tsx              # Globales Layout mit Navigation
+├─ page.tsx                # Startseite – Übersicht aller Vorlesungen
 ├─ vorlesungen/
-│ └─ [id]/
-│ └─ page.js # Dynamische Detailseite pro Vorlesung
+│   └─ [id]/
+│       └─ page.tsx        # Dynamische Detailseite pro Vorlesung
 ├─ merkliste/
-│ └─ page.js # Client-seitige Merkliste
+│   └─ page.tsx            # Merkliste (Client-seitig)
 ├─ faq/
-│ └─ page.js # Statische FAQ-Seite
+│   └─ page.tsx            # Statische FAQ-Seite
+```
