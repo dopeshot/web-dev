@@ -67,6 +67,9 @@ export default function VorlesungenOverviewPage() {
 					</div>
 				))}
 			</section>
+			<section>
+				<button>Neue Vorlesung erstellen</button>
+			</section>
 		</main>
 	)
 }
