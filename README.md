@@ -40,6 +40,9 @@ app/
 ├─ vorlesungen/
 │   └─ [id]/
 │       └─ page.tsx        # Dynamische Detailseite pro Vorlesung
+├─ vorlesungen/
+│   └─ erstellen/
+│       └─ page.tsx        # Erstellen einer neuen Vorlesung
 ├─ merkliste/
 │   └─ page.tsx            # Merkliste (Client-seitig)
 ├─ faq/

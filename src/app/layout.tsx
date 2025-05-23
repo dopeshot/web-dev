@@ -1,14 +1,10 @@
+import { Navbar } from '@/components/layout/Navbar'
+import '@picocss/pico'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
-	subsets: ['latin'],
-	weight: ['400', '600', '700'],
-})
-
 export const metadata: Metadata = {
-	title: 'Vorlesungsverzeichnis',
+	title: 'Vorlesungsverzeichnis | Vorlesungen',
 	description:
 		'Vorlesungsverzeichnis für Vorlesungen aus dem Studiengang Computer Science and Media an der Hdm.',
 }
@@ -20,7 +16,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="de">
-			<body className={`${inter.className} antialiased`}>{children}</body>
+			<body className="antialiased">
+				<Navbar />
+				{children}
+			</body>
 		</html>
 	)
 }
