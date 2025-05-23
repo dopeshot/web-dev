@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-type Vorlesungen = {
+export type Vorlesung = {
 	name: string
 	beschreibung: string
 	dozent: string
@@ -8,8 +8,8 @@ type Vorlesungen = {
 	slug: string
 }
 
-export default function Vorlesungen() {
-	const vorlesungenData: Vorlesungen[] = [
+export default function VorlesungenOverviewPage() {
+	const vorlesungenData: Vorlesung[] = [
 		{
 			name: 'Web Application Architecture',
 			beschreibung:
@@ -56,7 +56,7 @@ export default function Vorlesungen() {
 			</header>
 			<section className="grid grid-cols-1 sm:grid-cols-2">
 				{vorlesungenData.map((vorlesung) => (
-					<div key={vorlesung.slug} className="p-4 border rounded-lg">
+					<div key={vorlesung.slug} className="border rounded-lg p-4 ">
 						<h2 className="font-bold mb-1">{vorlesung.name}</h2>
 						<Link
 							href={`/vorlesungen/${vorlesung.slug}`}
