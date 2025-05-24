@@ -3,7 +3,10 @@ import type { Metadata } from 'next'
 import './globals.scss'
 
 export const metadata: Metadata = {
-	title: 'Vorlesungsverzeichnis | Vorlesungen',
+	title: {
+		template: '%s | Vorlesungsverzeichnis',
+		default: 'Vorlesungen | Vorlesungsverzeichnis',
+	},
 	description:
 		'Vorlesungsverzeichnis für Vorlesungen aus dem Studiengang Computer Science and Media an der Hdm.',
 }

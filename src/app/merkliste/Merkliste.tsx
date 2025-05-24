@@ -1,0 +1,39 @@
+'use client'
+
+import { Vorlesung } from '@/types/types'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+export const MerkListe = () => {
+	const [vorlesungen, setVorlesungen] = useState<Vorlesung[]>([])
+
+	useEffect(() => {
+		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
+
+		if (merkliste.length === 0) return
+
+		// Merkliste Items Fetchen
+		const fetchMerkliste = async () => {
+			const ids = merkliste.join(',')
+			const response = await fetch(`/api/vorlesungen?ids=${ids}`)
+			const data = await response.json()
+			setVorlesungen(data)
+		}
+		fetchMerkliste()
+	}, [])
+
+	return (
+		<section>
+			{vorlesungen.length > 0 ? (
+				vorlesungen.map((vorlesung) => (
+					<article key={vorlesung.edvnr}>
+						<h4>{vorlesung.name}</h4>
+						<Link href={`/vorlesungen/${vorlesung.edvnr}`}>Mehr erfahren</Link>
+					</article>
+				))
+			) : (
+				<p>Deine Merkliste ist leer.</p>
+			)}
+		</section>
+	)
+}

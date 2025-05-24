@@ -3,6 +3,18 @@ import { MerkButton } from '@/components/MerkButton'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
 
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ edvnr: string }>
+}) {
+	const edvnr = (await params).edvnr
+	return {
+		title: `${edvnr}`,
+		description: 'Details zur Vorlesung',
+	}
+}
+
 export default async function VorlesungDetailPage({
 	params,
 }: {
@@ -34,7 +46,7 @@ export default async function VorlesungDetailPage({
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
-			<MerkButton />
+			<MerkButton edvnr={vorlesung.edvnr} />
 		</main>
 	)
 }

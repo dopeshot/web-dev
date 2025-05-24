@@ -1,6 +1,11 @@
 import Form from 'next/form'
 import { handleCreateVorlesung } from '../actions'
 
+export const metadata = {
+	title: 'Vorlesung erstellen',
+	description: 'Hier kannst du eine neue Vorlesung erstellen.',
+}
+
 export default function VorlesungErstellenPage() {
 	return (
 		<main className="container">
