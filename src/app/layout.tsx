@@ -1,7 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar'
-import '@picocss/pico'
 import type { Metadata } from 'next'
-import './globals.css'
+import './globals.scss'
 
 export const metadata: Metadata = {
 	title: 'Vorlesungsverzeichnis | Vorlesungen',
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="de">
-			<body className="antialiased">
+			<body>
 				<Navbar />
 				{children}
 			</body>

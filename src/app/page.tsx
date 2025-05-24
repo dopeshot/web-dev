@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { routes } from './routes'
 
 export type Vorlesung = {
 	name: string
@@ -46,29 +47,26 @@ export default function VorlesungenOverviewPage() {
 
 	return (
 		<main className="container">
-			<header className="pb-4">
-				<h1 className="text-2xl font-bold mb-2">Vorlesungen</h1>
+			<header className="mb-8">
+				<h1>Vorlesungen</h1>
 				<p>
 					Das Vorlesungsverzeichnis für den Studiengang Computer Science and
 					Media an der Hochschule der Medien. Mit allen Vorlesungen die im
 					nächsten Semester angeboten werden.
 				</p>
 			</header>
-			<section className="grid grid-cols-1 sm:grid-cols-2">
+			<section>
 				{vorlesungenData.map((vorlesung) => (
-					<div key={vorlesung.slug} className="border rounded-lg p-4 ">
-						<h2 className="font-bold mb-1">{vorlesung.name}</h2>
-						<Link
-							href={`/vorlesungen/${vorlesung.slug}`}
-							className="text-primary-500 hover:text-primary-600"
-						>
-							Mehr erfahren
-						</Link>
-					</div>
+					<article key={vorlesung.slug}>
+						<h4>{vorlesung.name}</h4>
+						<Link href={`/vorlesungen/${vorlesung.slug}`}>Mehr erfahren</Link>
+					</article>
 				))}
 			</section>
 			<section>
-				<button>Neue Vorlesung erstellen</button>
+				<Link role="button" href={routes.vorlesungen.erstellen}>
+					Neue Vorlesung erstellen
+				</Link>
 			</section>
 		</main>
 	)

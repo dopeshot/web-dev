@@ -19,7 +19,7 @@ export default async function VorlesungDetailPage({
 	return (
 		<main className="container">
 			<section>
-				<p className="text-primary-500">Current Slug: {slug}</p>
+				<p>Current Slug: {slug}</p>
 			</section>
 
 			<section>
@@ -27,10 +27,10 @@ export default async function VorlesungDetailPage({
 			</section>
 
 			<section>
-				<h1 className="text-2xl font-bold mb-2">{vorlesung.name}</h1>
-				<p className="mb-2">{vorlesung.beschreibung}</p>
-				<p className="text-gray-400">Dozent: {vorlesung.dozent}</p>
-				<p className="text-gray-400">ECTS: {vorlesung.ects}</p>
+				<h1>{vorlesung.name}</h1>
+				<p>{vorlesung.beschreibung}</p>
+				<p>Dozent: {vorlesung.dozent}</p>
+				<p>ECTS: {vorlesung.ects}</p>
 			</section>
 		</main>
 	)
