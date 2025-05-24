@@ -1,11 +1,13 @@
 import { routes } from '@/app/routes'
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '../../app/assets/images/logo.svg'
+import logo from '../../app/assets/logo.png'
 
 export const Navbar = () => {
 	const links = [
 		{ href: routes.vorlesungen.overview, label: 'Vorlesungen' },
+		{ href: routes.vorlesungen.erstellen, label: 'Vorlesung erstellen' },
+		{ href: routes.vorlesungen.merkliste, label: 'Meine Merkliste' },
 		{ href: routes.faq, label: 'FAQ' },
 	]
 

@@ -1,4 +1,5 @@
 import { database } from '@/app/lib/datenbank'
+import { MerkButton } from '@/components/MerkButton'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
 
@@ -33,6 +34,7 @@ export default async function VorlesungDetailPage({
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
+			<MerkButton />
 		</main>
 	)
 }
