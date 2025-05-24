@@ -11,8 +11,6 @@ export const MerkListe = () => {
 	useEffect(() => {
 		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
-		if (merkliste.length === 0) return
-
 		// Merkliste Items Fetchen
 		const fetchMerkliste = async () => {
 			const ids = merkliste.join(',')
@@ -21,6 +19,7 @@ export const MerkListe = () => {
 			setVorlesungen(data)
 			setLoading(false)
 		}
+		
 		fetchMerkliste()
 	}, [])
 
