@@ -1,7 +1,7 @@
 export const routes = {
 	vorlesungen: {
 		overview: '/',
-		detail: (edvnr: string) => `/vorlesungen/${edvnr}`,
+		detail: (id: string) => `/vorlesungen/${id}`,
 		erstellen: '/vorlesungen/erstellen',
 		merkliste: '/merkliste',
 	},

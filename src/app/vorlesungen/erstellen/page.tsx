@@ -13,7 +13,6 @@ export default function VorlesungErstellenPage() {
 		'use server'
 
 		// Formulardaten auslesen
-		const edvnr = formData.get('edvnr')
 		const name = formData.get('name')
 		const beschreibung = formData.get('beschreibung')
 		const dozent = formData.get('dozent')
@@ -21,20 +20,18 @@ export default function VorlesungErstellenPage() {
 
 		// Neue Vorlesung in der Datenbank speichern
 		const statement = database.prepare(
-			`INSERT INTO vorlesungen (edvnr, name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?, ?)`,
+			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?, ?)`,
 		)
-		statement.run(edvnr, name, beschreibung, dozent, ects)
+		statement.run(name, beschreibung, dozent, ects)
 
 		console.log('Vorlesung erstellen:', {
-			edvnr,
 			name,
 			beschreibung,
 			dozent,
 			ects,
 		})
 
-		// Nach dem Speichern der Vorlesung zur Detailseite der neuen Vorlesung weiterleiten
-		redirect(routes.vorlesungen.detail(edvnr as string))
+		redirect(routes.vorlesungen.overview)
 	}
 
 	return (
@@ -42,10 +39,6 @@ export default function VorlesungErstellenPage() {
 			<h1>Vorlesung erstellen</h1>
 
 			<Form action={handleCreateVorlesung}>
-				{/* Edv Nummer */}
-				<label htmlFor="edvnr">Edv Nummer</label>
-				<input type="text" name="edvnr" id="edvnr" />
-
 				{/* Name der Vorlesung */}
 				<label htmlFor="name">Name der Vorlesung</label>
 				<input type="text" name="name" id="name" />

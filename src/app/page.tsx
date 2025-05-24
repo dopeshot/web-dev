@@ -17,9 +17,9 @@ export default function VorlesungenOverviewPage() {
 
 			{/* Vorlesung Liste */}
 			{vorlesungenData.map((vorlesung) => (
-				<article key={vorlesung.edvnr}>
+				<article key={vorlesung.id}>
 					<h4>{vorlesung.name}</h4>
-					<Link href={`/vorlesungen/${vorlesung.edvnr}`}>Mehr erfahren</Link>
+					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
 				</article>
 			))}
 

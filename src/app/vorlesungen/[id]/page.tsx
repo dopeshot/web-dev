@@ -6,11 +6,11 @@ import { notFound } from 'next/navigation'
 export async function generateMetadata({
 	params,
 }: {
-	params: Promise<{ edvnr: string }>
+	params: Promise<{ id: string }>
 }) {
-	const edvnr = (await params).edvnr
+	const id = (await params).id
 	return {
-		title: `${edvnr}`,
+		title: `Vorlesung ${id}`,
 		description: 'Details zur Vorlesung',
 	}
 }
@@ -18,20 +18,22 @@ export async function generateMetadata({
 export default async function VorlesungDetailPage({
 	params,
 }: {
-	params: Promise<{ edvnr: string }>
+	params: Promise<{ id: string }>
 }) {
-	// Edvnr aus den URL Parametern lesen
-	const edvnr = (await params).edvnr
+	// id aus den URL Parametern lesen
+	const id = (await params).id
 
 	// Aktuelle Vorlesung aus der Datenbank laden
-	function getVorlesungByEdvnr(edvnr: string): Vorlesung | undefined {
+	function getVorlesungById(): Vorlesung | undefined {
 		const statement = database.prepare<string, Vorlesung>(
-			'SELECT * FROM vorlesungen WHERE edvnr = ?',
+			'SELECT * FROM vorlesungen WHERE id = ?',
 		)
-		const result = statement.get(edvnr)
+		const result = statement.get(id)
 		return result
 	}
-	const vorlesung = getVorlesungByEdvnr(edvnr)
+	const vorlesung = getVorlesungById()
+
+	console.log(vorlesung)
 
 	// Wenn die Vorlesung nicht gefunden wurde, 404 Fehler zurückgeben
 	if (!vorlesung) {
@@ -40,13 +42,11 @@ export default async function VorlesungDetailPage({
 
 	return (
 		<main className="container">
-			<h1>
-				{vorlesung.name} ({vorlesung.edvnr})
-			</h1>
+			<h1>{vorlesung.name}</h1>
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
-			<MerkButton edvnr={vorlesung.edvnr} />
+			<MerkButton id={vorlesung.id} />
 		</main>
 	)
 }

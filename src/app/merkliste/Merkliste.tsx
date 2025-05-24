@@ -19,7 +19,7 @@ export const MerkListe = () => {
 			setVorlesungen(data)
 			setLoading(false)
 		}
-		
+
 		fetchMerkliste()
 	}, [])
 
@@ -30,9 +30,9 @@ export const MerkListe = () => {
 		<section>
 			{vorlesungen.length > 0 ? (
 				vorlesungen.map((vorlesung) => (
-					<article key={vorlesung.edvnr}>
+					<article key={vorlesung.id}>
 						<h4>{vorlesung.name}</h4>
-						<Link href={`/vorlesungen/${vorlesung.edvnr}`}>Mehr erfahren</Link>
+						<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
 					</article>
 				))
 			) : (

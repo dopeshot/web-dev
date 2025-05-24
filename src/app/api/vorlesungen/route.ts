@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 	const placeholders = ids.map(() => '?').join(', ')
 
 	// Wir bauen das SQL-Statement mit den Platzhaltern
-	const query = `SELECT * FROM vorlesungen WHERE edvnr IN (${placeholders})`
+	const query = `SELECT * FROM vorlesungen WHERE id IN (${placeholders})`
 
 	// Jetzt bereiten wir das Statement vor und geben die echten IDs als Parameter rein
 	const statement = database.prepare(query)

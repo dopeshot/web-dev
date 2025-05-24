@@ -2,29 +2,29 @@
 import { useState } from 'react'
 
 type Props = {
-	edvnr: string
+	id: string
 }
 
-export const MerkButton: React.FC<Props> = ({ edvnr }) => {
+export const MerkButton: React.FC<Props> = ({ id }) => {
 	const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
-	const istGemerkt = merkliste.includes(edvnr)
+	const istGemerkt = merkliste.includes(id)
 	const [gemerkt, setGemerkt] = useState(istGemerkt)
 
 	function merklisteToggle() {
 		if (gemerkt) {
 			// Vorlesung aus der Merkliste entfernen
-			const neueMerkliste = merkliste.filter((item: string) => item !== edvnr)
+			const neueMerkliste = merkliste.filter((item: string) => item !== id)
 			localStorage.setItem('merkliste', JSON.stringify(neueMerkliste))
 			setGemerkt(false)
 
-			console.log(`Vorlesung ${edvnr} wurde aus der Merkliste entfernt.`)
+			console.log(`Vorlesung ${id} wurde aus der Merkliste entfernt.`)
 		} else {
 			// Vorlesung zur Merkliste hinzufügen
-			merkliste.push(edvnr)
+			merkliste.push(id)
 			localStorage.setItem('merkliste', JSON.stringify(merkliste))
 			setGemerkt(true)
 
-			console.log(`Vorlesung ${edvnr} wurde zur Merkliste hinzugefügt.`)
+			console.log(`Vorlesung ${id} wurde zur Merkliste hinzugefügt.`)
 		}
 	}
 
