@@ -19,6 +19,7 @@ Projekt öffnen unter: [http://localhost:3000](http://localhost:3000)
 - [Pico.css](https://picocss.com/) (Minimal-Styles für schnelle UI)
 - [ESLint](https://eslint.org/) – Linter für sauberen Code
 - [Prettier](https://prettier.io/) – Code Formatter
+- [Promised sqlite3](https://www.npmjs.com/package/promised-sqlite3) - Lokale Datenbank
 
 ## Features
 

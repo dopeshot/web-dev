@@ -1,4 +1,4 @@
-import { database } from '@/lib/datenbank'
+import { getDatabase } from '@/lib/datenbank'
 import Form from 'next/form'
 import { redirect } from 'next/navigation'
 
@@ -18,10 +18,11 @@ export default function VorlesungErstellenPage() {
 		const ects = formData.get('ects')
 
 		// Neue Vorlesung in der Datenbank speichern
-		const statement = database.prepare(
+		const database = await getDatabase()
+		await database.run(
 			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?)`,
+			[name, beschreibung, dozent, ects],
 		)
-		statement.run(name, beschreibung, dozent, ects)
 
 		console.log('Vorlesung erstellen:', {
 			name,

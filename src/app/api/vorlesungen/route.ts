@@ -1,4 +1,4 @@
-import { database } from '@/lib/datenbank'
+import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { NextRequest } from 'next/server'
 
@@ -20,8 +20,8 @@ export async function GET(request: NextRequest) {
 	const query = `SELECT * FROM vorlesungen WHERE id IN (${placeholders})`
 
 	// Jetzt bereiten wir das Statement vor und geben die echten IDs als Parameter rein
-	const statement = database.prepare(query)
-	const vorlesungen = statement.all(...ids) as Vorlesung[]
+	const database = await getDatabase()
+	const vorlesungen = await database.all<Vorlesung>(query, ids)
 
 	return Response.json(vorlesungen)
 }

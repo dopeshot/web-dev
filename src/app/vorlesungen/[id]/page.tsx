@@ -1,5 +1,5 @@
 import { MerkButton } from '@/components/MerkButton'
-import { database } from '@/lib/datenbank'
+import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
 
@@ -24,14 +24,15 @@ export default async function VorlesungDetailPage({
 	const id = (await params).id
 
 	// Aktuelle Vorlesung aus der Datenbank laden
-	function getVorlesungById(): Vorlesung | undefined {
-		const statement = database.prepare<string, Vorlesung>(
+	async function getVorlesungById(): Promise<Vorlesung | undefined> {
+		const database = await getDatabase()
+		const vorlesung = await database.get<Vorlesung>(
 			'SELECT * FROM vorlesungen WHERE id = ?',
+			[id],
 		)
-		const result = statement.get(id)
-		return result
+		return vorlesung ?? undefined
 	}
-	const vorlesung = getVorlesungById()
+	const vorlesung = await getVorlesungById()
 
 	// Wenn die Vorlesung nicht gefunden wurde, 404 Fehler zurückgeben
 	if (!vorlesung) {
