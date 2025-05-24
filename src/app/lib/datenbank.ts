@@ -2,12 +2,12 @@ import Database from 'better-sqlite3'
 import fs from 'fs'
 import path from 'path'
 
-const dbPath = path.join(process.cwd(), 'data', 'dev.db')
-fs.mkdirSync(path.dirname(dbPath), { recursive: true })
+const datenbankPath = path.join('datenbank.db')
+fs.mkdirSync(path.dirname(datenbankPath), { recursive: true })
 
-const db = new Database(dbPath)
+export const database = new Database('datenbank.db')
 
-db.exec(`
+database.exec(`
   CREATE TABLE IF NOT EXISTS vorlesungen (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -53,12 +53,12 @@ const vorlesungen = [
 	},
 ]
 
-const insert = db.prepare(`
+const insert = database.prepare(`
   INSERT OR IGNORE INTO vorlesungen (name, beschreibung, dozent, ects, edvnr)
   VALUES (@name, @beschreibung, @dozent, @ects, @edvnr)
 `)
 
-const insertMany = db.transaction((vorlesungen) => {
+const insertMany = database.transaction((vorlesungen) => {
 	for (const vorlesung of vorlesungen) insert.run(vorlesung)
 })
 

@@ -1,29 +1,32 @@
-import { getVorlesungen } from '@/database/db'
 import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
+import { database } from './lib/datenbank'
 import { routes } from './routes'
 
 export default function VorlesungenOverviewPage() {
-	const vorlesungenData: Vorlesung[] = getVorlesungen()
+	// Alle Vorlesungen aus der Datenbank laden
+	function fetchVorlesungen(): Vorlesung[] {
+		const statement = database.prepare('SELECT * FROM vorlesungen')
+		return statement.all() as Vorlesung[]
+	}
+	const vorlesungenData = fetchVorlesungen()
 
 	return (
 		<main className="container">
-			<header>
-				<h1>Vorlesungen</h1>
-			</header>
-			<section>
-				{vorlesungenData.map((vorlesung) => (
-					<article key={vorlesung.edvnr}>
-						<h4>{vorlesung.name}</h4>
-						<Link href={`/vorlesungen/${vorlesung.edvnr}`}>Mehr erfahren</Link>
-					</article>
-				))}
-			</section>
-			<section>
-				<Link role="button" href={routes.vorlesungen.erstellen}>
-					Neue Vorlesung erstellen
-				</Link>
-			</section>
+			<h1>Vorlesungen</h1>
+
+			{/* Vorlesung Liste */}
+			{vorlesungenData.map((vorlesung) => (
+				<article key={vorlesung.edvnr}>
+					<h4>{vorlesung.name}</h4>
+					<Link href={`/vorlesungen/${vorlesung.edvnr}`}>Mehr erfahren</Link>
+				</article>
+			))}
+
+			{/* Neue Vorlesung erstellen */}
+			<Link role="button" href={routes.vorlesungen.erstellen}>
+				Neue Vorlesung erstellen
+			</Link>
 		</main>
 	)
 }

@@ -1,77 +1,35 @@
 import Form from 'next/form'
+import { handleCreateVorlesung } from '../actions'
 
-export default async function VorlesungErstellenPage() {
-	const handleSubmit = async (formData: FormData) => {
-		'use server'
-		// Hier kannst du die Logik zum Speichern der Vorlesung implementieren
-		// Zum Beispiel: await saveVorlesung(formData)
-		console.log('Vorlesung erstellt:', Object.fromEntries(formData.entries()))
-	}
-
+export default function VorlesungErstellenPage() {
 	return (
 		<main className="container">
-			<section>
-				<h1>Vorlesung erstellen</h1>
-			</section>
+			<h1>Vorlesung erstellen</h1>
 
-			<section>
-				<Form action={handleSubmit}>
-					<div>
-						<label htmlFor="edvnr">Edv Nummer</label>
-						<input type="text" id="edvnr" />
-					</div>
+			<Form action={handleCreateVorlesung}>
+				{/* Edv Nummer */}
+				<label htmlFor="edvnr">Edv Nummer</label>
+				<input type="text" name="edvnr" id="edvnr" />
 
-					<div>
-						<label htmlFor="name" className="block mb-1">
-							Name der Vorlesung
-						</label>
-						<input
-							type="text"
-							id="name"
-							className="border border-gray-300 rounded p-2 w-full"
-						/>
-					</div>
+				{/* Name der Vorlesung */}
+				<label htmlFor="name">Name der Vorlesung</label>
+				<input type="text" name="name" id="name" />
 
-					<div>
-						<label htmlFor="beschreibung" className="block mb-1">
-							Beschreibung
-						</label>
-						<textarea
-							id="beschreibung"
-							className="border border-gray-300 rounded p-2 w-full"
-						></textarea>
-					</div>
+				{/* Beschreibung der Vorlesung */}
+				<label htmlFor="beschreibung">Beschreibung</label>
+				<textarea id="beschreibung" name="beschreibung"></textarea>
 
-					<div>
-						<label htmlFor="dozent" className="block mb-1">
-							Name des Dozenten
-						</label>
-						<input
-							type="text"
-							id="dozent"
-							className="border border-gray-300 rounded p-2 w-full"
-						/>
-					</div>
+				{/* Name des Dozenten */}
+				<label htmlFor="dozent">Name des Dozenten</label>
+				<input type="text" id="dozent" name="dozent" />
 
-					<div>
-						<label htmlFor="ects" className="block mb-1">
-							ECTS-Punkte
-						</label>
-						<input
-							type="number"
-							id="ects"
-							className="border border-gray-300 rounded p-2 w-full"
-						/>
-					</div>
+				{/* ECTS Punkte */}
+				<label htmlFor="ects">ECTS-Punkte</label>
+				<input type="number" id="ects" name="ects" />
 
-					<button
-						type="submit"
-						className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
-					>
-						Vorlesung erstellen
-					</button>
-				</Form>
-			</section>
+				{/* Submit Button */}
+				<button type="submit">Vorlesung erstellen</button>
+			</Form>
 		</main>
 	)
 }
