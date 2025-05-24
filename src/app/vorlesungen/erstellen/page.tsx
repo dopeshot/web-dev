@@ -1,5 +1,4 @@
 import { getDatabase } from '@/lib/datenbank'
-import Form from 'next/form'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
@@ -8,7 +7,7 @@ export const metadata = {
 }
 
 export default function VorlesungErstellenPage() {
-	async function handleCreateVorlesung(formData: FormData) {
+	async function save(formData: FormData) {
 		'use server'
 
 		// Formulardaten auslesen
@@ -23,14 +22,7 @@ export default function VorlesungErstellenPage() {
 			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?)`,
 			[name, beschreibung, dozent, ects],
 		)
-
-		console.log('Vorlesung erstellen:', {
-			name,
-			beschreibung,
-			dozent,
-			ects,
-		})
-
+		
 		redirect('/')
 	}
 
@@ -38,26 +30,26 @@ export default function VorlesungErstellenPage() {
 		<main className="container">
 			<h1>Vorlesung erstellen</h1>
 
-			<Form action={handleCreateVorlesung}>
+			<form action={save}>
 				{/* Name der Vorlesung */}
-				<label htmlFor="name">Name der Vorlesung</label>
-				<input type="text" name="name" id="name" />
+				<label>Name der Vorlesung</label>
+				<input type="text" name="name" />
 
 				{/* Beschreibung der Vorlesung */}
-				<label htmlFor="beschreibung">Beschreibung</label>
-				<textarea id="beschreibung" name="beschreibung"></textarea>
+				<label>Beschreibung</label>
+				<textarea name="beschreibung"></textarea>
 
 				{/* Name des Dozenten */}
-				<label htmlFor="dozent">Name des Dozenten</label>
-				<input type="text" id="dozent" name="dozent" />
+				<label >Name des Dozenten</label>
+				<input type="text" name="dozent" />
 
 				{/* ECTS Punkte */}
-				<label htmlFor="ects">ECTS-Punkte</label>
-				<input type="number" id="ects" name="ects" />
+				<label>ECTS-Punkte</label>
+				<input type="number" name="ects" />
 
 				{/* Submit Button */}
 				<button type="submit">Vorlesung erstellen</button>
-			</Form>
+			</form>
 		</main>
 	)
 }
