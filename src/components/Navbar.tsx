@@ -14,7 +14,7 @@ export const Navbar = () => {
 		<nav className="container">
 			<ul>
 				<li>
-					<Image src={logo} alt="Logo" height={50} width={50} />
+					<Image loading='eager' src={logo} alt="Logo" height={50} width={50} />
 				</li>
 				{links.map((link) => (
 					<li key={link.href}>
