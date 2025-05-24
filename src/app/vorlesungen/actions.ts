@@ -1,6 +1,6 @@
 'use server'
 
-import Database from 'better-sqlite3'
+import { database } from '@/lib/datenbank'
 import { redirect } from 'next/navigation'
 import { routes } from '../routes'
 
@@ -13,7 +13,6 @@ export async function handleCreateVorlesung(formData: FormData) {
 	const ects = formData.get('ects')
 
 	// Neue Vorlesung in der Datenbank speichern
-	const database = new Database('datenbank.db')
 	const statement = database.prepare(
 		`INSERT INTO vorlesungen (edvnr, name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?, ?)`,
 	)
