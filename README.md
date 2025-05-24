@@ -26,10 +26,10 @@ Projekt öffnen unter: [http://localhost:3000](http://localhost:3000)
 - **Detailseite einer Vorlesung** (`/vorlesungen/:id`)
   - Mit Titel, Beschreibung, Dozent, ECTS
   - „Merken“-Button (Speichern im Client)
+- **Erstellen einer neuen Vorlesung** (`/vorlesungen/erstellen`)
 - **Merkliste** (`/merkliste`)
   - Anzeige aller gemerkten Vorlesungen
 - **FAQ-Seite** (`/faq`)
-  - Statische Liste von Fragen und Antworten
 
 ## Projektstruktur
 
