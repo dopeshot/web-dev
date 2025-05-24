@@ -7,7 +7,8 @@ type Props = {
 
 export const MerkButton: React.FC<Props> = ({ edvnr }) => {
 	const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
-	const [gemerkt, setGemerkt] = useState(merkliste.includes(edvnr))
+	const istGemerkt = merkliste.includes(edvnr)
+	const [gemerkt, setGemerkt] = useState(istGemerkt)
 
 	function merklisteToggle() {
 		if (gemerkt) {
@@ -32,7 +33,7 @@ export const MerkButton: React.FC<Props> = ({ edvnr }) => {
 			onClick={() => merklisteToggle()}
 			className={`${gemerkt ? 'secondary' : ''}`}
 		>
-			Vorlesung {gemerkt ? 'nicht mehr merken' : 'merken'}
+			{gemerkt ? '✅' : ''} Vorlesung merken
 		</button>
 	)
 }

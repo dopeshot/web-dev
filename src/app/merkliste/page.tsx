@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { MerkListe } from './Merkliste'
 
 export const metadata = {
@@ -9,7 +10,9 @@ export default async function MerkListePage() {
 	return (
 		<main className="container">
 			<h1>Meine Merkliste</h1>
-			<MerkListe />
+			<Suspense fallback={<p>Lade Merkliste...</p>}>
+				<MerkListe />
+			</Suspense>
 		</main>
 	)
 }

@@ -1,7 +1,7 @@
 import { routes } from '@/app/routes'
+import logo from '@/assets/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '../../app/assets/logo.png'
 
 export const Navbar = () => {
 	const links = [

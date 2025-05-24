@@ -1,4 +1,4 @@
-import { database } from '@/app/lib/datenbank'
+import { database } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { NextRequest } from 'next/server'
 

@@ -1,6 +1,6 @@
 import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
-import { database } from './lib/datenbank'
+import { database } from '../lib/datenbank'
 import { routes } from './routes'
 
 export default function VorlesungenOverviewPage() {

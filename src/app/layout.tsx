@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/layout/Navbar'
+import { Navbar } from '@/components/Navbar'
 import type { Metadata } from 'next'
 import './globals.scss'
 

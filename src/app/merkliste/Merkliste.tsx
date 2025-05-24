@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 export const MerkListe = () => {
 	const [vorlesungen, setVorlesungen] = useState<Vorlesung[]>([])
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
@@ -18,10 +19,14 @@ export const MerkListe = () => {
 			const response = await fetch(`/api/vorlesungen?ids=${ids}`)
 			const data = await response.json()
 			setVorlesungen(data)
+			setLoading(false)
 		}
 		fetchMerkliste()
 	}, [])
 
+	if (loading) {
+		return <p>Lade Merkliste...</p>
+	}
 	return (
 		<section>
 			{vorlesungen.length > 0 ? (

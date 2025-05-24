@@ -1,5 +1,5 @@
-import { database } from '@/app/lib/datenbank'
 import { MerkButton } from '@/components/MerkButton'
+import { database } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
 
