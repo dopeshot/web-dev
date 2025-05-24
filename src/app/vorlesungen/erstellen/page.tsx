@@ -1,16 +1,26 @@
+import Form from 'next/form'
+
 export default async function VorlesungErstellenPage() {
+	const handleSubmit = async (formData: FormData) => {
+		'use server'
+		// Hier kannst du die Logik zum Speichern der Vorlesung implementieren
+		// Zum Beispiel: await saveVorlesung(formData)
+		console.log('Vorlesung erstellt:', Object.fromEntries(formData.entries()))
+	}
+
 	return (
 		<main className="container">
 			<section>
-				<h1 className="text-2xl font-bold mb-2">Vorlesung erstellen</h1>
-				<p className="mb-2">
-					Hier kannst du eine neue Vorlesung erstellen. Bitte fülle alle
-					erforderlichen Felder aus.
-				</p>
+				<h1>Vorlesung erstellen</h1>
 			</section>
 
 			<section>
-				<form className="flex flex-col gap-4">
+				<Form action={handleSubmit}>
+					<div>
+						<label htmlFor="edvnr">Edv Nummer</label>
+						<input type="text" id="edvnr" />
+					</div>
+
 					<div>
 						<label htmlFor="name" className="block mb-1">
 							Name der Vorlesung
@@ -60,7 +70,7 @@ export default async function VorlesungErstellenPage() {
 					>
 						Vorlesung erstellen
 					</button>
-				</form>
+				</Form>
 			</section>
 		</main>
 	)
