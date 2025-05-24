@@ -1,4 +1,3 @@
-import { routes } from '@/app/routes'
 import { database } from '@/lib/datenbank'
 import Form from 'next/form'
 import { redirect } from 'next/navigation'
@@ -20,7 +19,7 @@ export default function VorlesungErstellenPage() {
 
 		// Neue Vorlesung in der Datenbank speichern
 		const statement = database.prepare(
-			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?, ?)`,
+			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?)`,
 		)
 		statement.run(name, beschreibung, dozent, ects)
 
@@ -31,7 +30,7 @@ export default function VorlesungErstellenPage() {
 			ects,
 		})
 
-		redirect(routes.vorlesungen.overview)
+		redirect('/')
 	}
 
 	return (

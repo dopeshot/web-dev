@@ -33,8 +33,6 @@ export default async function VorlesungDetailPage({
 	}
 	const vorlesung = getVorlesungById()
 
-	console.log(vorlesung)
-
 	// Wenn die Vorlesung nicht gefunden wurde, 404 Fehler zurückgeben
 	if (!vorlesung) {
 		notFound()

@@ -1,7 +1,6 @@
 import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
 import { database } from '../lib/datenbank'
-import { routes } from './routes'
 
 export default function VorlesungenOverviewPage() {
 	// Alle Vorlesungen aus der Datenbank laden
@@ -24,7 +23,7 @@ export default function VorlesungenOverviewPage() {
 			))}
 
 			{/* Neue Vorlesung erstellen */}
-			<Link role="button" href={routes.vorlesungen.erstellen}>
+			<Link role="button" href="/vorlesungen/erstellen">
 				Neue Vorlesung erstellen
 			</Link>
 		</main>
