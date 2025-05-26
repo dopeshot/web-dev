@@ -1,4 +1,5 @@
 import { getDatabase } from '@/lib/datenbank'
+import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
@@ -22,7 +23,8 @@ export default function VorlesungErstellenPage() {
 			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?)`,
 			[name, beschreibung, dozent, ects],
 		)
-		
+
+		revalidatePath('/')
 		redirect('/')
 	}
 
@@ -40,7 +42,7 @@ export default function VorlesungErstellenPage() {
 				<textarea name="beschreibung"></textarea>
 
 				{/* Name des Dozenten */}
-				<label >Name des Dozenten</label>
+				<label>Name des Dozenten</label>
 				<input type="text" name="dozent" />
 
 				{/* ECTS Punkte */}
