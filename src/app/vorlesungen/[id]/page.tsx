@@ -1,19 +1,6 @@
-import { MerkButton } from '@/components/MerkButton'
 import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
-
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ id: string }>
-}) {
-	const id = (await params).id
-	return {
-		title: `Vorlesung ${id}`,
-		description: 'Details zur Vorlesung',
-	}
-}
 
 export default async function VorlesungDetailPage({
 	params,
@@ -45,7 +32,6 @@ export default async function VorlesungDetailPage({
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
-			<MerkButton id={vorlesung.id} />
 		</main>
 	)
 }
