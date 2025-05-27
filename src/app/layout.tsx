@@ -1,3 +1,4 @@
+import { Navbar } from '@/components/Navbar'
 import type { Metadata } from 'next'
 import './globals.scss'
 
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="de">
-			<body>{children}</body>
+			<body>
+				<Navbar />
+				{children}
+			</body>
 		</html>
 	)
 }
