@@ -22,11 +22,6 @@ export default async function VorlesungenOverviewPage() {
 					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
 				</article>
 			))}
-
-			{/* Neue Vorlesung erstellen */}
-			<Link role="button" href="/vorlesungen/erstellen">
-				Neue Vorlesung erstellen
-			</Link>
 		</main>
 	)
 }
