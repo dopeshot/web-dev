@@ -1,6 +1,5 @@
 import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
-import { notFound } from 'next/navigation'
 
 export default async function VorlesungDetailPage({
 	params,
@@ -21,9 +20,9 @@ export default async function VorlesungDetailPage({
 	}
 	const vorlesung = await getVorlesungById()
 
-	// Wenn die Vorlesung nicht gefunden wurde, 404 Fehler zurückgeben
+	// Wenn die Vorlesung nicht gefunden wurde, Fehler anzeigen
 	if (!vorlesung) {
-		notFound()
+		return <p>Vorlesung nicht gefunden!</p>
 	}
 
 	return (
