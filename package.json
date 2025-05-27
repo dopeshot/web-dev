@@ -4,9 +4,10 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"build": "npx tsx ./src/lib/seed.ts && next build",
+		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"seed": "npx tsx ./src/lib/seed.ts"
 	},
 	"dependencies": {
 		"@picocss/pico": "^2.1.1",
