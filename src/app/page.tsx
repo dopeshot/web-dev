@@ -1,4 +1,5 @@
 import { Vorlesung } from '@/types/types'
+import Link from 'next/link'
 
 export default async function VorlesungenOverviewPage() {
 	const vorlesungen: Vorlesung[] = [
@@ -44,7 +45,7 @@ export default async function VorlesungenOverviewPage() {
 			{vorlesungen.map((vorlesung) => (
 				<article key={vorlesung.id}>
 					<h4>{vorlesung.name}</h4>
-					{/* TODO: übung 1 routing und linking: hier einen link zur Vorlesung Detail Seite einfügen */}
+					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
 				</article>
 			))}
 		</main>
