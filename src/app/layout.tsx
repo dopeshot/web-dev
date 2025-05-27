@@ -1,12 +1,8 @@
-import { Navbar } from '@/components/Navbar'
 import type { Metadata } from 'next'
 import './globals.scss'
 
 export const metadata: Metadata = {
-	title: {
-		template: '%s | Vorlesungsverzeichnis',
-		default: 'Vorlesungen | Vorlesungsverzeichnis',
-	},
+	title: 'Vorlesungsverzeichnis',
 	description:
 		'Vorlesungsverzeichnis für Vorlesungen aus dem Studiengang Computer Science and Media an der Hdm.',
 }
@@ -18,10 +14,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="de">
-			<body>
-				<Navbar />
-				{children}
-			</body>
+			<body>{children}</body>
 		</html>
 	)
 }
