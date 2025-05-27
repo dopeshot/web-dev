@@ -1,32 +1,52 @@
-import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
-import Link from 'next/link'
 
 export default async function VorlesungenOverviewPage() {
-	// Alle Vorlesungen aus der Datenbank laden
-	async function fetchVorlesungen(): Promise<Vorlesung[]> {
-		const database = await getDatabase()
-		const vorlesungen = await database.all('SELECT * FROM vorlesungen')
-		return vorlesungen as Vorlesung[]
-	}
-	const vorlesungenData = await fetchVorlesungen()
+	const vorlesungen: Vorlesung[] = [
+		{
+			id: '1',
+			name: 'Web Application Architecture',
+			beschreibung:
+				'Architekturprinzipien moderner Webanwendungen, Frameworks, Microservices und Deployment.',
+			dozent: 'Fridtjof Toenniessen',
+			ects: 5,
+		},
+		{
+			id: '2',
+			name: 'Machine-Learning',
+			beschreibung:
+				'Einführung in maschinelles Lernen, inklusive überwachtem und unüberwachtem Lernen, sowie Anwendungsszenarien.',
+			dozent: 'Johannes Maucher',
+			ects: 5,
+		},
+		{
+			id: '3',
+			name: 'Mobile Applications',
+			beschreibung:
+				'Entwicklung mobiler Apps für Android/iOS, inklusive UX-Design und Performanceoptimierung.',
+			dozent: 'Ansgar Gerlicher, Zack Walker',
+			ects: 5,
+		},
+		{
+			id: '4',
+			name: 'Advanced Game Development',
+			beschreibung:
+				'Vertiefung in moderne Spieleentwicklungstechniken mit Fokus auf Physik, Grafik und Interaktion.',
+			dozent: 'Stefan Radicke',
+			ects: 5,
+		},
+	]
 
 	return (
 		<main className="container">
 			<h1>Vorlesungen</h1>
 
 			{/* Vorlesung Liste */}
-			{vorlesungenData.map((vorlesung) => (
+			{vorlesungen.map((vorlesung) => (
 				<article key={vorlesung.id}>
 					<h4>{vorlesung.name}</h4>
-					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
+					{/* TODO: übung 1 routing und linking: hier einen link zur Vorlesung Detail Seite einfügen */}
 				</article>
 			))}
-
-			{/* Neue Vorlesung erstellen */}
-			<Link role="button" href="/vorlesungen/erstellen">
-				Neue Vorlesung erstellen
-			</Link>
 		</main>
 	)
 }
