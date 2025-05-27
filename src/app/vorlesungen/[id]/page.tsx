@@ -1,17 +1,5 @@
 import { Vorlesung } from '@/types/types'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ id: string }>
-}) {
-	const id = (await params).id
-	return {
-		title: `Vorlesung ${id}`,
-		description: 'Details zur Vorlesung',
-	}
-}
-
 export default async function VorlesungDetailPage({
 	params,
 }: {
