@@ -4,8 +4,6 @@ export const Navbar = () => {
 	const links = [
 		{ href: '/', label: 'Vorlesungen' },
 		{ href: '/vorlesungen/erstellen', label: 'Vorlesung erstellen' },
-		{ href: '/merkliste', label: 'Meine Merkliste' },
-		{ href: '/faq', label: 'FAQ' },
 	]
 
 	return (
