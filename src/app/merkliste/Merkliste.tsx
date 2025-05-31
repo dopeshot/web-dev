@@ -3,41 +3,45 @@
 import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import useSWR from 'swr'
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export const MerkListe = () => {
-	const [vorlesungen, setVorlesungen] = useState<Vorlesung[]>([])
-	const [loading, setLoading] = useState(true)
+	const [ids, setIds] = useState<string[]>([])
+
+	const key = ids.length > 0 ? `/api/vorlesungen?ids=${ids.join(',')}` : null
+	const {
+		data: vorlesungen,
+		error,
+		isLoading,
+	} = useSWR<Vorlesung[]>(key, fetcher)
 
 	useEffect(() => {
 		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
-
-		// Merkliste Items Fetchen
-		const fetchMerkliste = async () => {
-			const ids = merkliste.join(',')
-			const response = await fetch(`/api/vorlesungen?ids=${ids}`)
-			const data = await response.json()
-			setVorlesungen(data)
-			setLoading(false)
-		}
-
-		fetchMerkliste()
+		setIds(merkliste)
 	}, [])
 
-	if (loading) {
+	if (error) {
+		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
+	}
+
+	if (isLoading || ids.length === 0) {
 		return <p>Lade Merkliste...</p>
 	}
+
+	if (!vorlesungen || vorlesungen.length === 0) {
+		return <p>Deine Merkliste ist leer.</p>
+	}
+
 	return (
 		<section>
-			{vorlesungen.length > 0 ? (
-				vorlesungen.map((vorlesung) => (
-					<article key={vorlesung.id}>
-						<h4>{vorlesung.name}</h4>
-						<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
-					</article>
-				))
-			) : (
-				<p>Deine Merkliste ist leer.</p>
-			)}
+			{vorlesungen.map((vorlesung) => (
+				<article key={vorlesung.id}>
+					<h4>{vorlesung.name}</h4>
+					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
+				</article>
+			))}
 		</section>
 	)
 }
