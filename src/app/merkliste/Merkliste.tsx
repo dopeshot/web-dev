@@ -26,17 +26,17 @@ export const MerkListe = () => {
 		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
 	}
 
-	if (isLoading || ids.length === 0) {
+	if (isLoading) {
 		return <p>Lade Merkliste...</p>
 	}
 
-	if (!vorlesungen || vorlesungen.length === 0) {
+	if (vorlesungen?.length === 0) {
 		return <p>Deine Merkliste ist leer.</p>
 	}
 
 	return (
 		<section>
-			{vorlesungen.map((vorlesung) => (
+			{vorlesungen?.map((vorlesung) => (
 				<article key={vorlesung.id}>
 					<h4>{vorlesung.name}</h4>
 					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
