@@ -1,4 +1,4 @@
-import { MerkListe } from './Merkliste'
+import { MerklisteClientOnly } from './MerklisteClientOnly'
 
 export const metadata = {
 	title: 'Meine Merkliste',
@@ -9,7 +9,7 @@ export default async function MerkListePage() {
 	return (
 		<main className="container">
 			<h1>Meine Merkliste</h1>
-			<MerkListe />
+			<MerklisteClientOnly />
 		</main>
 	)
 }

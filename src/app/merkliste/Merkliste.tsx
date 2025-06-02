@@ -7,10 +7,11 @@ import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-export const MerkListe = () => {
+const Merkliste = () => {
 	const [ids, setIds] = useState<string[]>([])
 	const [isMounted, setIsMounted] = useState(false)
 
+	// TODO: Joy das kann man jetzt refacroten, local storage ist immer da! 
 	useEffect(() => {
 		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
 		setIsMounted(true)
@@ -32,7 +33,7 @@ export const MerkListe = () => {
 	}
 
 	if (!isMounted || isLoading) {
-		return <p>Lade Merkliste...</p>
+		return <span aria-busy={true}>Lade Merkliste...</span>
 	}
 
 	if (!vorlesungen || vorlesungen.length === 0) {
@@ -50,3 +51,5 @@ export const MerkListe = () => {
 		</section>
 	)
 }
+
+export default Merkliste

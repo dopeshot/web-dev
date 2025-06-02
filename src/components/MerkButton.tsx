@@ -5,9 +5,10 @@ type Props = {
 	id: string
 }
 
-export const MerkButton: React.FC<Props> = ({ id }) => {
+const MerkButton: React.FC<Props> = ({ id }) => {
 	const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
 	const istGemerkt = merkliste.includes(id)
+
 	const [gemerkt, setGemerkt] = useState(istGemerkt)
 
 	function merklisteToggle() {
@@ -37,3 +38,5 @@ export const MerkButton: React.FC<Props> = ({ id }) => {
 		</button>
 	)
 }
+
+export default MerkButton
