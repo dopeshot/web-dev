@@ -36,7 +36,7 @@ export const MerkListe = () => {
 
 	return (
 		<section>
-			{vorlesungen?.map((vorlesung) => (
+			{vorlesungen.map((vorlesung) => (
 				<article key={vorlesung.id}>
 					<h4>{vorlesung.name}</h4>
 					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
