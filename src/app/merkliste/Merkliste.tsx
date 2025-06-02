@@ -10,17 +10,19 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 export const MerkListe = () => {
 	const [ids, setIds] = useState<string[]>([])
 
-	const key = ids.length > 0 ? `/api/vorlesungen?ids=${ids.join(',')}` : null
+	useEffect(() => {
+		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
+		setIds(merkliste)
+	}, [])
+
+	const hasIdsInLocalstorage = ids.length > 0
+	const key = hasIdsInLocalstorage ? `/api/vorlesungen?ids=${ids.join(',')}` : null
+
 	const {
 		data: vorlesungen,
 		error,
 		isLoading,
 	} = useSWR<Vorlesung[]>(key, fetcher)
-
-	useEffect(() => {
-		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
-		setIds(merkliste)
-	}, [])
 
 	if (error) {
 		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
