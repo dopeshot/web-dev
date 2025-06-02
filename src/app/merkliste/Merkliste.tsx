@@ -9,9 +9,12 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export const MerkListe = () => {
 	const [ids, setIds] = useState<string[]>([])
+	const [isMounted, setIsMounted] = useState(false)
 
 	useEffect(() => {
 		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
+		setIsMounted(true)
+
 		setIds(merkliste)
 	}, [])
 
@@ -28,7 +31,7 @@ export const MerkListe = () => {
 		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
 	}
 
-	if (isLoading) {
+	if (!isMounted || isLoading) {
 		return <p>Lade Merkliste...</p>
 	}
 
