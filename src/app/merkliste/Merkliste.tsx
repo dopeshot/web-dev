@@ -30,7 +30,7 @@ export const MerkListe = () => {
 		return <p>Lade Merkliste...</p>
 	}
 
-	if (vorlesungen?.length === 0) {
+	if (!vorlesungen || vorlesungen.length === 0) {
 		return <p>Deine Merkliste ist leer.</p>
 	}
 
