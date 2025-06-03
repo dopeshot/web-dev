@@ -1,6 +1,8 @@
 'use client'
 
+import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
+import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
@@ -8,14 +10,27 @@ export const Merkliste = () => {
 	const merklisteIds = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
 	const hasIdsInLocalstorage = merklisteIds > 0
-	// TODO: Definiere hier den Key für useSWR, nutze "hasIdsInLocalstorage" um zu prüfen ob der fetch gemacht werden soll.
-	const key = null
+	const key = hasIdsInLocalstorage
+		? `/api/vorlesungen?ids=${merklisteIds.join(',')}`
+		: null
 
-	// TODO: Hole die Daten mit useSWR, nutze den "key" und den fetcher.
+	const {
+		data: vorlesungen,
+		error,
+		isLoading,
+	} = useSWR<Vorlesung[]>(key, fetcher)
 
-	// TODO: Wenn Daten laden gebe einen Ladezustand zurück
-	// TODO: Wenn Daten nicht geladen werden konnten, gebe eine Fehlermeldung zurück.
-	// TODO: Wenn Vorlesungen leer oder undefiniert sind, zeige an das die Liste leer ist.
+	if (error) {
+		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
+	}
+
+	if (isLoading) {
+		return <span aria-busy={true}>Lade Merkliste...</span>
+	}
+
+	if (!vorlesungen || vorlesungen.length === 0) {
+		return <p>Deine Merkliste ist leer.</p>
+	}
 
 	return (
 		<section>

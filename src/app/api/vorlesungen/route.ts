@@ -4,11 +4,10 @@ import { NextRequest } from 'next/server'
 
 // /api/vorlesungen?ids=123,456,789
 export async function GET(request: NextRequest) {
-	// TODO: Hole aus der URL den Parameter "ids" mit dem request.
-	const idsParam = null
+	const idsParam = request.nextUrl.searchParams.get('ids')
 
 	if (!idsParam) {
-		// TODO: Wenn kein Parameter "ids" in der URL ist, dann gebe eine leere Liste zurück.
+		return new Response(JSON.stringify([]), { status: 200 })
 	}
 
 	// idsParam ist z. B. "123,456,789"
@@ -25,5 +24,5 @@ export async function GET(request: NextRequest) {
 	const database = await getDatabase()
 	const vorlesungen = await database.all<Vorlesung>(query, ids)
 
-	// TODO: Gebe die Vorlesungen als JSON zurück.
+	return Response.json(vorlesungen)
 }
