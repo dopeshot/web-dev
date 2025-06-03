@@ -1,7 +1,5 @@
 import { Params, Post } from '@/types/types'
 
-// export const dynamicParams = true // Disable dynamic params for this page => to 404 on unknown IDs
-
 export async function generateStaticParams() {
 	// 25 blogs
 	const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) =>

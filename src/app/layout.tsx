@@ -4,11 +4,10 @@ import './globals.scss'
 
 export const metadata: Metadata = {
 	title: {
-		template: '%s | Vorlesungsverzeichnis',
-		default: 'Vorlesungen | Vorlesungsverzeichnis',
+		template: '%s | Blog',
+		default: 'Post | Blog',
 	},
-	description:
-		'Vorlesungsverzeichnis für Vorlesungen aus dem Studiengang Computer Science and Media an der Hdm.',
+	description: 'Static site',
 }
 
 export default function RootLayout({
