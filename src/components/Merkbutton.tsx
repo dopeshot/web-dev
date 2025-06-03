@@ -1,14 +1,17 @@
-type Props = {
-	id: string
-}
+'use client'
 
-export const MerkButton: React.FC<Props> = ({ id }) => {
-	// TODO: Implementiere die Logik zum Merken der Vorlesung in diesem Button
+import { useState } from 'react'
+
+export const MerkButton: React.FC = () => {
+	const [gemerkt, setGemerkt] = useState<boolean>(false)
 
 	function onButtonClick() {
-		// Wird ausgeführt wenn der Button geklickt wird
+		setGemerkt((prev) => !prev)
 	}
 
-	// TODO: Der Text soll sich ändern, wenn die Vorlesung gemerkt wurde
-	return <button onClick={onButtonClick}>Vorlesung merken</button>
+	return (
+		<button onClick={onButtonClick}>
+			{gemerkt ? 'Vorlesung merken' : 'Vorlesung merken ✅'}
+		</button>
+	)
 }
