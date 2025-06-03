@@ -6,7 +6,7 @@ import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-const Merkliste = () => {
+export const Merkliste = () => {
 	const merklisteIds = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
 	const hasIdsInLocalstorage = merklisteIds > 0
@@ -43,5 +43,3 @@ const Merkliste = () => {
 		</section>
 	)
 }
-
-export default Merkliste
