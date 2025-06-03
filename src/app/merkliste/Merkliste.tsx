@@ -2,25 +2,17 @@
 
 import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const Merkliste = () => {
-	const [ids, setIds] = useState<string[]>([])
-	const [isMounted, setIsMounted] = useState(false)
+	const merklisteIds = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
-	// TODO: Joy das kann man jetzt refacroten, local storage ist immer da! 
-	useEffect(() => {
-		const merkliste = JSON.parse(localStorage.getItem('merkliste') || '[]')
-		setIsMounted(true)
-
-		setIds(merkliste)
-	}, [])
-
-	const hasIdsInLocalstorage = ids.length > 0
-	const key = hasIdsInLocalstorage ? `/api/vorlesungen?ids=${ids.join(',')}` : null
+	const hasIdsInLocalstorage = merklisteIds > 0
+	const key = hasIdsInLocalstorage
+		? `/api/vorlesungen?ids=${merklisteIds.join(',')}`
+		: null
 
 	const {
 		data: vorlesungen,
@@ -32,7 +24,7 @@ const Merkliste = () => {
 		return <p>Fehler beim Laden der Merkliste: {error.message}</p>
 	}
 
-	if (!isMounted || isLoading) {
+	if (isLoading) {
 		return <span aria-busy={true}>Lade Merkliste...</span>
 	}
 
