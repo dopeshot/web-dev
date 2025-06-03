@@ -7,7 +7,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 export const Merkliste = () => {
 	const merklisteIds = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
-	const hasIdsInLocalstorage = merklisteIds > 0
+	const hasIdsInLocalstorage = merklisteIds.length > 0
 	// TODO: Definiere hier den Key für useSWR, nutze "hasIdsInLocalstorage" um zu prüfen ob der fetch gemacht werden soll.
 	const key = null
 
