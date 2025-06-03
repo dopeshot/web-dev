@@ -34,7 +34,7 @@ export default async function VorlesungDetailPage({
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
 
-			<MerkButton />
+			<MerkButton id={vorlesung.id} />
 		</main>
 	)
 }

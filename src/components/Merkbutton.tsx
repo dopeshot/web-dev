@@ -2,11 +2,24 @@
 
 import { useState } from 'react'
 
-export const MerkButton: React.FC = () => {
-	const [gemerkt, setGemerkt] = useState<boolean>(false)
+export const MerkButton: React.FC<{ id: string }> = ({ id }) => {
+	const merkliste = JSON.parse(
+		localStorage.getItem('merkliste') || '[]',
+	) as string[]
+	const istGemerkt = merkliste.includes(id)
+
+	const [gemerkt, setGemerkt] = useState<boolean>(istGemerkt)
 
 	function onButtonClick() {
-		setGemerkt((prev) => !prev)
+		if (gemerkt) {
+			const neueMerkliste = merkliste.filter((item: string) => item !== id)
+			localStorage.setItem('merkliste', JSON.stringify(neueMerkliste))
+			setGemerkt(false)
+		} else {
+			merkliste.push(id)
+			localStorage.setItem('merkliste', JSON.stringify(merkliste))
+			setGemerkt(true)
+		}
 	}
 
 	return (
