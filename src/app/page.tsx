@@ -1,28 +1,19 @@
-import { getDatabase } from '@/lib/datenbank'
-import { Vorlesung } from '@/types/types'
 import Link from 'next/link'
 
-export default async function VorlesungenOverviewPage() {
-	// Alle Vorlesungen aus der Datenbank laden
-	async function fetchVorlesungen(): Promise<Vorlesung[]> {
-		const database = await getDatabase()
-		const vorlesungen = await database.all('SELECT * FROM vorlesungen')
-		return vorlesungen as Vorlesung[]
-	}
-	const vorlesungenData = await fetchVorlesungen()
+// Next.js will invalidate the cache when a
+// request comes in, !!at most!! once every 20 seconds.
 
+// export const revalidate = 20
+export default async function VorlesungenOverviewPage() {
+	const names = await (await fetch('http://localhost:3001/data')).json()
 	return (
 		<main className="container">
 			<h1>Vorlesungen</h1>
-
-			{/* Vorlesung Liste */}
-			{vorlesungenData.map((vorlesung) => (
-				<article key={vorlesung.id}>
-					<h4>{vorlesung.name}</h4>
-					<Link href={`/vorlesungen/${vorlesung.id}`}>Mehr erfahren</Link>
+			{names.map((name: string) => (
+				<article key={name}>
+					<h4>{name}</h4>
 				</article>
 			))}
-
 			{/* Neue Vorlesung erstellen */}
 			<Link role="button" href="/vorlesungen/erstellen">
 				Neue Vorlesung erstellen

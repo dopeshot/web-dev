@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - sharp
+  - sqlite3
+  - unrs-resolver

@@ -23,7 +23,6 @@ export default function VorlesungErstellenPage() {
 			`INSERT INTO vorlesungen (name, beschreibung, dozent, ects) VALUES (?, ?, ?, ?)`,
 			[name, beschreibung, dozent, ects],
 		)
-
 		revalidatePath('/')
 		redirect('/')
 	}
