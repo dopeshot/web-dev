@@ -45,6 +45,7 @@ export default async function VorlesungDetailPage({
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
+
 			<MerkButtonClientOnly id={vorlesung.id} />
 		</main>
 	)

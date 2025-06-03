@@ -1,13 +1,12 @@
-"use client"
+'use client'
 
-import { Loading } from "@/components/Loading"
-import dynamic from "next/dynamic"
+import dynamic from 'next/dynamic'
 
-const MerklisteDynamic = dynamic(() => import("./Merkliste"), {
-    ssr: false,
-    loading: () => <Loading />
+const MerklisteDynamic = dynamic(() => import('./Merkliste'), {
+	ssr: false,
+	loading: () => <span aria-busy="true">Laden...</span>,
 })
 
 export const MerklisteClientOnly = () => {
-    return <MerklisteDynamic />
+	return <MerklisteDynamic />
 }
