@@ -1,4 +1,4 @@
-import { MerkButton } from '@/components/Merkbutton'
+import { MerkButtonClientOnly } from '@/components/MerkButtonClientOnly'
 import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
@@ -34,7 +34,7 @@ export default async function VorlesungDetailPage({
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
 
-			<MerkButton id={vorlesung.id} />
+			<MerkButtonClientOnly id={vorlesung.id} />
 		</main>
 	)
 }
