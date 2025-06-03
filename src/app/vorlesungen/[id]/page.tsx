@@ -32,6 +32,8 @@ export default async function VorlesungDetailPage({
 			<p>{vorlesung.beschreibung}</p>
 			<p>Dozent: {vorlesung.dozent}</p>
 			<p>ECTS: {vorlesung.ects}</p>
+
+			{/* TOOD: Füge Merke Button hier ein */}
 		</main>
 	)
 }
