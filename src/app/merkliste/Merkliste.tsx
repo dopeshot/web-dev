@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 export const Merkliste = () => {
 	const merklisteIds = JSON.parse(localStorage.getItem('merkliste') || '[]')
 
-	const hasIdsInLocalstorage = merklisteIds > 0
+	const hasIdsInLocalstorage = merklisteIds.length > 0
 	const key = hasIdsInLocalstorage
 		? `/api/vorlesungen?ids=${merklisteIds.join(',')}`
 		: null
