@@ -1,4 +1,4 @@
-import { MerkButton } from '@/components/Merkbutton'
+import { MerkButton } from '@/components/MerkButton'
 import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { notFound } from 'next/navigation'
