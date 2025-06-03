@@ -2,11 +2,6 @@ import { getDatabase } from '@/lib/datenbank'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export const metadata = {
-	title: 'Vorlesung erstellen',
-	description: 'Hier kannst du eine neue Vorlesung erstellen.',
-}
-
 export default function VorlesungErstellenPage() {
 	async function save(formData: FormData) {
 		'use server'

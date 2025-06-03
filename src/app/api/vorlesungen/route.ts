@@ -2,11 +2,13 @@ import { getDatabase } from '@/lib/datenbank'
 import { Vorlesung } from '@/types/types'
 import { NextRequest } from 'next/server'
 
+// /api/vorlesungen?ids=123,456,789
 export async function GET(request: NextRequest) {
-	const idsParam = request.nextUrl.searchParams.get('ids')
+	// TODO: Hole aus der URL den Parameter "ids" mit dem request.
+	const idsParam = null
 
 	if (!idsParam) {
-		return new Response(JSON.stringify([]), { status: 200 })
+		// TODO: Wenn kein Parameter "ids" in der URL ist, dann gebe eine leere Liste zurück.
 	}
 
 	// idsParam ist z. B. "123,456,789"
@@ -23,5 +25,5 @@ export async function GET(request: NextRequest) {
 	const database = await getDatabase()
 	const vorlesungen = await database.all<Vorlesung>(query, ids)
 
-	return Response.json(vorlesungen)
+	// TODO: Gebe die Vorlesungen als JSON zurück.
 }

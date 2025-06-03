@@ -1,10 +1,5 @@
 import { MerklisteClientOnly } from './MerklisteClientOnly'
 
-export const metadata = {
-	title: 'Meine Merkliste',
-	description: 'Hier findest du alle Vorlesungen, die du dir gemerkt hast.',
-}
-
 export default async function MerkListePage() {
 	return (
 		<main className="container">
