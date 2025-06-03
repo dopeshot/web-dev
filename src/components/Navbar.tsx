@@ -1,6 +1,4 @@
-import logo from '@/assets/logo.png'
 import { Post } from '@/types/types'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export const Navbar = async () => {
@@ -18,7 +16,7 @@ export const Navbar = async () => {
 		<nav className="container">
 			<ul>
 				<li>
-					<Image loading="eager" src={logo} alt="Logo" height={50} width={50} />
+					{/* <Image loading="eager" src={logo} alt="Logo" height={50} width={50} /> */}
 				</li>
 				{links.map((link) => (
 					<li key={link.href}>
