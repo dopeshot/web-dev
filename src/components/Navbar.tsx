@@ -1,20 +1,24 @@
 import logo from '@/assets/logo.png'
+import { Post } from '@/types/types'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const Navbar = () => {
-	const links = [
-		{ href: '/', label: 'Vorlesungen' },
-		{ href: '/vorlesungen/erstellen', label: 'Vorlesung erstellen' },
-		{ href: '/merkliste', label: 'Meine Merkliste' },
-		{ href: '/faq', label: 'FAQ' },
-	]
+export const Navbar = async () => {
+	const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) =>
+		res.json(),
+	)
+
+	const links = posts.map((post) => ({
+		href: `/blog/${post.id}`,
+		label: post.id,
+	}))
+	links.unshift({ href: '/', label: 'Home' })
 
 	return (
 		<nav className="container">
 			<ul>
 				<li>
-					<Image loading='eager' src={logo} alt="Logo" height={50} width={50} />
+					<Image loading="eager" src={logo} alt="Logo" height={50} width={50} />
 				</li>
 				{links.map((link) => (
 					<li key={link.href}>
