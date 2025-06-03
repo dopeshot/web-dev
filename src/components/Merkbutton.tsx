@@ -11,7 +11,7 @@ export const MerkButton: React.FC = () => {
 
 	return (
 		<button onClick={onButtonClick}>
-			{gemerkt ? 'Vorlesung merken' : 'Vorlesung merken ✅'}
+			{gemerkt ? 'Vorlesung merken ✅' : 'Vorlesung merken'}
 		</button>
 	)
 }
