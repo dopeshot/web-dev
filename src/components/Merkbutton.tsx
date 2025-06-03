@@ -1,8 +1,4 @@
-type Props = {
-	id: string
-}
-
-export const MerkButton: React.FC<Props> = ({ id }) => {
+export const MerkButton: React.FC = () => {
 	// TODO: Implementiere die Logik zum Merken der Vorlesung in diesem Button
 
 	function onButtonClick() {
